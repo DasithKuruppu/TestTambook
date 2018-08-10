@@ -1,17 +1,17 @@
 // / <reference types="Cypress" />
 import { SchoolSchema } from '../../fixtures/schemas';
-const nameIt = name => value => ({ [name]: value })
+
 context('Schools API', () => {
   it('List Schools', () => {
     cy.request('/schools?lastEval=default').should(response => {
       const { body , headers, duration } = response;
      
       expect(response.status).to.be.within(200,205,'Check if request status is valid');
-      expect(headers).to.be.a('object','Request headers');
+      expect(headers).to.be.an('object','Request headers');
       expect(duration).to.be.be.within(1,2500,'Request duration');
-      expect(body).to.have.property('lastEvaluatedKey');
-      expect(body).to.have.property('result').to.be.an('array');
-      expect(body.result).to.have.length.lte(9);
+      expect(body,'Request Body').to.have.property('lastEvaluatedKey');
+      expect(body,'Request Body').to.have.property('result');
+      expect(body.result,'Schools list').to.not.be.empty;
       body.result.forEach(school=>{
         expect(school).to.be.jsonSchema(SchoolSchema);
       })

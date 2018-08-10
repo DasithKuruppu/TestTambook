@@ -1,6 +1,6 @@
 export default {
   SchoolSchema: {
-    title: "fruit",
+    title: "School",
     type: "object",
     required: ["name", "schoolType"],
     properties: {
