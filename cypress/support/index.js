@@ -14,7 +14,7 @@
 // ***********************************************************
 
 import chaijsonschema from 'chai-json-schema-ajv';
-chai.use(chaijsonschema);
+chai.use(chaijsonschema.withOptions({validateSchema:true,unknownFormats:"ignore",logger:false}));
 const expect = chai.expect;
 // Import commands.js using ES2015 syntax:
 import './commands'

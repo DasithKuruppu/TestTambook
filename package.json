@@ -1,6 +1,6 @@
 {
     "dependencies": {
-        "chai-json-schema-ajv": "^3.0.0"
+        "chai-json-schema-ajv": "git+https://github.com/DasithKuruppu/chai-json-schema-ajv.git"
     },
     "devDependencies": {
         "cypress": "^3.0.3"
