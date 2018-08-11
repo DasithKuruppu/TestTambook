@@ -1,6 +1,8 @@
 {
     "dependencies": {
-        "chai-json-schema-ajv": "git+https://github.com/DasithKuruppu/chai-json-schema-ajv.git"
+        "chai-json-schema-ajv": "git+https://github.com/DasithKuruppu/chai-json-schema-ajv.git",
+        "mocha": "^5.2.0",
+        "mochawesome": "^3.0.3"
     },
     "devDependencies": {
         "cypress": "^3.0.3"

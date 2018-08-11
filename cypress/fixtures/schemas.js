@@ -12,6 +12,9 @@ export default {
       },
       schoolType: {
         type: "string"
+      },
+      wtf:{
+        type: "number"
       }
     }
   }

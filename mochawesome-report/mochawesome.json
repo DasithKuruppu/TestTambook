@@ -1,0 +1,95 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2018-08-11T12:25:26.125Z",
+    "end": "2018-08-11T12:25:28.476Z",
+    "duration": 2351,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "passPercentClass": "success",
+    "pendingPercentClass": "danger"
+  },
+  "suites": {
+    "uuid": "f9ec2efa-2aeb-4c48-a42f-25717858cf98",
+    "title": "",
+    "fullFile": "",
+    "file": "",
+    "beforeHooks": [],
+    "afterHooks": [],
+    "tests": [],
+    "suites": [
+      {
+        "uuid": "c48ade97-1372-48b0-9d24-9fb01421928a",
+        "title": "Schools API",
+        "fullFile": "",
+        "file": "",
+        "beforeHooks": [],
+        "afterHooks": [],
+        "tests": [
+          {
+            "title": "List Schools",
+            "fullTitle": "Schools API List Schools",
+            "duration": 913,
+            "state": "passed",
+            "speed": "slow",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "cy.request(\"/schools?lastEval=default\").should(function (response) {\n  var body = response.body,\n      headers = response.headers,\n      duration = response.duration,\n      status = response.status;\n\n  expect(status).to.be.within(200, 205, \"Check if request status is valid\");\n  expect(headers).to.be.an(\"object\", \"Request headers\");\n  expect(duration).to.be.be.within(1, 2500, \"Request duration\");\n  expect(body, \"Request Body\").to.have.property(\"lastEvaluatedKey\");\n  expect(body, \"Request Body\").to.have.property(\"result\");\n  expect(body.result, \"Schools list\").to.not.be.empty;\n  body.result.forEach(function (school) {\n    expect(school).to.be.jsonSchema(_schemas.SchoolSchema);\n  });\n});",
+            "err": {},
+            "isRoot": false,
+            "uuid": "2739c684-e584-4ad9-817d-f83af6e4d082",
+            "isHook": false,
+            "skipped": false
+          },
+          {
+            "title": "List Schools - With Pagination(Request 2 Pages)",
+            "fullTitle": "Schools API List Schools - With Pagination(Request 2 Pages)",
+            "duration": 1394,
+            "state": "passed",
+            "speed": "slow",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "cy.request(\"/schools?lastEval=default\").then(function (response) {\n  var body = response.body,\n      status = response.status;\n  var previosResults = body.result,\n      previousEvaluatedKey = body.lastEvaluatedKey;\n  expect(body, \"Request Body\").to.have.property(\"lastEvaluatedKey\");\n  cy.request(\"/schools?lastEval=\" + previousEvaluatedKey.id).should(function (response) {\n    var body = response.body,\n        headers = response.headers,\n        duration = response.duration,\n        status = response.status;\n\n    expect(status).to.be.within(200, 205, \"Check if request status is valid\");\n    expect(headers).to.be.an(\"object\", \"Request headers\");\n    expect(duration).to.be.be.within(1, 2500, \"Request duration\");\n    expect(body, \"Request Body\").to.have.property(\"lastEvaluatedKey\");\n    expect(body, \"Request Body\").to.have.property(\"result\");\n    expect(body.result, \"Schools list\").to.not.be.empty;\n    body.result.forEach(function (school) {\n      expect(school).to.be.jsonSchema(_schemas.SchoolSchema);\n      expect(previosResults).to.not.deep.include(school);\n    });\n  });\n});",
+            "err": {},
+            "isRoot": false,
+            "uuid": "02bba92b-ed13-459e-8758-c1b01e61ebee",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "2739c684-e584-4ad9-817d-f83af6e4d082",
+          "02bba92b-ed13-459e-8758-c1b01e61ebee"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 2307,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 2000
+      }
+    ],
+    "passes": [],
+    "failures": [],
+    "pending": [],
+    "skipped": [],
+    "duration": 0,
+    "root": true,
+    "rootEmpty": true,
+    "_timeout": 2000
+  },
+  "copyrightYear": 2018
+}
